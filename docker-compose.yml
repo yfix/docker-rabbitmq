@@ -1,0 +1,18 @@
+version: '2'
+services:
+  rabbitmq:
+#    image: yfix/rabbitmq
+    build: .
+    container_name: yfix_test_rabbitmq
+    hostname: my-rabbit
+    restart: unless-stopped
+    environment:
+#      - RABBITMQ_ERLANG_COOKIE=secret_cookie_here
+#      - RABBITMQ_NODENAME=rabbit@my-rabbit
+#      - RABBITMQ_DEFAULT_VHOST=my_vhost
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+    volumes:
+#      - ./docker/etc/rabbitmq/:/etc/rabbitmq/
+      - ./docker/var/log/rabbitmq:/var/log/rabbitmq
+      - ./docker/var/lib/rabbitmq:/var/lib/rabbitmq
